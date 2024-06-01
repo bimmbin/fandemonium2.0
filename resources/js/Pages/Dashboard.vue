@@ -21,7 +21,7 @@ import { Head } from "@inertiajs/vue3";
                     class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        You're logged in! asdfsadfsd
+                        You're logged in! dev
                     </div>
                 </div>
             </div>
