@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Genre;
 use App\Models\Profile;
 use App\Models\ArtistMember;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,7 @@ class Filler extends Seeder
             Profile::factory()
                 ->has(ArtistMember::factory(random_int(2, 3)))->state([
                     'type' => 'artist',
-                ])
+                ])->has(Genre::factory(random_int(2, 3)))
         )->create();
     }
 }

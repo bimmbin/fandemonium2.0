@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('middle_name')->nullable();
-            $table->string('genre')->nullable();
             $table->text('background')->nullable();
             $table->enum('type', ['fan', 'artist'])->default('fan');
             $table->timestamps();

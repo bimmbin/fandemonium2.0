@@ -29,7 +29,6 @@ class Profile extends Model
         'first_name',
         'last_name',
         'middle_name',
-        'genre',
         'background',
         'type',
     ];
@@ -48,5 +47,13 @@ class Profile extends Model
     public function artistMembers()
     {
         return $this->hasMany(ArtistMember::class, 'artist_profile_id');
+    }
+
+    /**
+     * Get the genres for the profile.
+     */
+    public function genres()
+    {
+        return $this->hasMany(Genre::class);
     }
 }

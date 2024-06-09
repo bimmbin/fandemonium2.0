@@ -23,7 +23,6 @@ class ProfileFactory extends Factory
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'middle_name' => $this->faker->lastName(),
-            'genre' => $this->faker->word(),
             'background' => $this->faker->paragraph(),
             'type' => $this->faker->randomElement(['fan', 'artist']),
         ];
