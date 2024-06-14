@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\Artist\ArtistProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -17,6 +17,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/create-profile/artist', [ArtistProfileController::class, 'create'])->name('profile.create');
+
 
 Route::group(['middleware' => ['auth', 'role:artist']], function () {
     // Artist routes
