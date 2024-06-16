@@ -59,9 +59,9 @@ const reset = () => {
 
     <div class="flex flex-col w-full">
         <div v-for="stepCount in stepCounts">
-            <slot v-if="step == stepCount" :name="'step' + stepCount">
-                this is {{ "step" + stepCount }}
-            </slot>
+            <div :class="{ hidden: step != stepCount }">
+                <slot :name="'step' + stepCount"></slot>
+            </div>
         </div>
 
         <div class="flex items-center justify-between gap-2 mt-5">
