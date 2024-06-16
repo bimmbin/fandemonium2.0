@@ -57,7 +57,9 @@ const reset = () => {
         </div>
     </div>
 
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col w-full mt-5">
+        <slot name="all"></slot>
+
         <div v-for="stepCount in stepCounts">
             <div :class="{ hidden: step != stepCount }" class="mt-5">
                 <slot :name="'step' + stepCount"></slot>

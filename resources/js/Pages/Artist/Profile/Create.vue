@@ -42,6 +42,20 @@ const removeLinks = (index) => {
     form.social_links.splice(index, 1);
 };
 
+// upload picture
+const url = ref();
+
+const previewImage = (e) => {
+    const file = e.target.files;
+    url.value = URL.createObjectURL(file[0]);
+    console.log(URL.createObjectURL(file[0]));
+    // url.value = []; //remove the recent items
+    // for (let i = 0; i < file.length; i++) {
+    //     url.value.push(URL.createObjectURL(file[i]));
+    //     // console.log(URL.createObjectURL(file[i]))
+    // }
+};
+
 const form = useForm({
     artist_name: "",
     genres: [],
@@ -79,26 +93,43 @@ const submit = () => {
 
     <MainLayout>
         <Wizard :stepCounts="3">
-            <template #title1> Profile Information </template>
+            <template #all>
+                <img
+                    v-if="url"
+                    :src="url"
+                    alt=""
+                    class="object-cover w-full border-2 border-dashed rounded-lg h-60 border-dark-brand"
+                />
+                <label
+                    v-else
+                    for="file"
+                    class="flex flex-col items-center justify-center w-full gap-3 border-2 border-dashed rounded-lg h-60 border-dark-brand bg-dark-secondary"
+                >
+                    <img src="/assets/image.svg" class="h-16" />
+                    <div class="font-semibold">Upload Profile</div>
+                    <div
+                        class="flex items-center gap-2 px-5 py-2 rounded-full bg-dark-accent"
+                    >
+                        <img src="/assets/add.svg" class="h-3" />
+                        <span>Choose</span>
+                    </div>
+                </label>
+                <!-- Input File -->
+                <input
+                    type="file"
+                    id="file"
+                    class="w-full px-3 py-2 bg-input_bg rounded-t-md"
+                    @input="form.image = $event.target.files"
+                    @change="previewImage"
+                    hidden
+                    accept="image/*"
+                />
+            </template>
 
             <!-- Step 1 -->
+            <template #title1>Profile Information</template>
             <template #step1>
                 <div class="flex flex-col gap-5">
-                    <label
-                        for="img"
-                        class="flex flex-col items-center justify-center w-full gap-3 border-2 border-dashed rounded-lg h-60 border-dark-brand bg-dark-secondary"
-                    >
-                        <img src="/assets/image.svg" class="h-16" />
-                        <div class="font-semibold">Upload Profile</div>
-                        <div
-                            class="flex items-center gap-2 px-5 py-2 rounded-full bg-dark-accent"
-                        >
-                            <img src="/assets/add.svg" class="h-3" />
-                            <span>Choose</span>
-                        </div>
-                    </label>
-                    <input type="file" hidden id="img" />
-
                     <!-- Artist Name -->
                     <div class="flex flex-col gap-2">
                         <label for="artist_name" class="text-xs font-medium"
@@ -192,10 +223,6 @@ const submit = () => {
             <template #title2>Social Links</template>
             <template #step2>
                 <div class="flex flex-col gap-5">
-                    <div
-                        class="flex flex-col items-center justify-center w-full gap-3 border-2 border-dashed rounded-lg h-60 border-dark-brand bg-dark-secondary"
-                    ></div>
-
                     <!-- Social Links -->
                     <div class="flex flex-col gap-2">
                         <label for="genre" class="text-xs font-medium"
@@ -235,10 +262,6 @@ const submit = () => {
             <template #title3> Account Details </template>
             <template #step3>
                 <div class="flex flex-col gap-5">
-                    <div
-                        class="flex flex-col items-center justify-center w-full gap-3 border-2 border-dashed rounded-lg h-60 border-dark-brand bg-dark-secondary"
-                    ></div>
-
                     <!-- Username -->
                     <div class="flex flex-col gap-2">
                         <label for="username" class="text-xs font-medium"

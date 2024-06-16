@@ -18,8 +18,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/create-profile/artist', [ArtistProfileController::class, 'create'])->name('profile.create');
-
+// Route::get('/create-profile/artist', [ArtistProfileController::class, 'create'])->name('profile.create');
+Route::resource('artist', ArtistProfileController::class);
 
 Route::group(['middleware' => ['auth', 'role:artist']], function () {
     // Artist routes
