@@ -59,7 +59,7 @@ const reset = () => {
 
     <div class="flex flex-col w-full">
         <div v-for="stepCount in stepCounts">
-            <div :class="{ hidden: step != stepCount }">
+            <div :class="{ hidden: step != stepCount }" class="mt-5">
                 <slot :name="'step' + stepCount"></slot>
             </div>
         </div>
@@ -81,8 +81,12 @@ const reset = () => {
                 Next
             </button>
             {{ step.length }}
-            <button v-if="step === stepCounts" @click="reset">
-                Start Over
+            <button
+                v-if="step === stepCounts"
+                @click="reset"
+                class="w-full py-3 text-center border rounded-full border-dark-accent bg-dark-accent"
+            >
+                Finish
             </button>
         </div>
     </div>
