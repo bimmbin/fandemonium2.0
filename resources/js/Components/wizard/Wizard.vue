@@ -8,6 +8,8 @@ defineProps({
     },
 });
 
+const emit = defineEmits(["submit"]);
+
 const step = ref(1);
 const user = ref({
     name: "",
@@ -85,7 +87,7 @@ const reset = () => {
             {{ step.length }}
             <button
                 v-if="step === stepCounts"
-                @click="reset"
+                @click="emit('submit')"
                 class="w-full py-3 text-center border rounded-full border-dark-accent bg-dark-accent"
             >
                 Finish

@@ -1,6 +1,8 @@
 <script setup>
 import { useForm, Link } from "@inertiajs/vue3";
 import { ref } from "vue";
+import Swal from "sweetalert2";
+import InputError from "@/Components/InputError.vue";
 import Wizard from "@/Components/wizard/Wizard.vue";
 import AddItems from "@/Components/AddItems.vue";
 import AddSocialLinks from "@/Components/AddSocialLinks.vue";
@@ -62,10 +64,28 @@ const form = useForm({
     members: [],
     about: "",
     social_links: [],
+    username: "",
+    password: "",
+    password_confirmation: "",
 });
 const submit = () => {
-    form.post(route("web-development.store"), {
-        onSuccess: () => emit("close_emit"),
+    form.post(route("artist.store"), {
+        onSuccess: () => form.reset(),
+        onError: () => {
+            let errorMessage = "";
+            // error.forEach((error) => {
+            //     errorMessage += `${error} <br>`;
+            // });
+            for (let index = 0; index < form.errors.length; index++) {
+                errorMessage += `sadfasdfsdfsd`;
+            }
+            console.log(errorMessage);
+            Swal.fire({
+                title: "Error!",
+                html: "Modal with a custom image3",
+                icon: "error",
+            });
+        },
     });
 };
 </script>
@@ -92,7 +112,7 @@ const submit = () => {
     />
 
     <MainLayout>
-        <Wizard :stepCounts="3">
+        <Wizard :stepCounts="3" @submit="submit()">
             <template #all>
                 <img
                     v-if="url"
@@ -140,6 +160,11 @@ const submit = () => {
                             class="w-full px-5 py-3 text-sm border-none rounded-lg bg-dark-secondary"
                             placeholder="The beatles"
                             id="artist_name"
+                            v-model="form.artist_name"
+                        />
+                        <InputError
+                            v-show="!form.artist_name"
+                            :message="form.errors.artist_name"
                         />
                     </div>
 
@@ -172,6 +197,10 @@ const submit = () => {
                                 <span>Add</span>
                             </div>
                         </div>
+                        <InputError
+                            v-show="form.genres.length === 0"
+                            :message="form.errors.genres"
+                        />
                     </div>
 
                     <!-- Members -->
@@ -203,6 +232,10 @@ const submit = () => {
                                 <span>Add</span>
                             </div>
                         </div>
+                        <InputError
+                            v-show="form.members.length === 0"
+                            :message="form.errors.members"
+                        />
                     </div>
 
                     <!-- About -->
@@ -272,6 +305,11 @@ const submit = () => {
                             class="w-full px-5 py-3 text-sm border-none rounded-lg bg-dark-secondary"
                             placeholder="JohnDoe22"
                             id="username"
+                            v-model="form.username"
+                        />
+                        <InputError
+                            v-show="!form.username"
+                            :message="form.errors.username"
                         />
                     </div>
 
@@ -283,8 +321,12 @@ const submit = () => {
                         <input
                             type="password"
                             class="w-full px-5 py-3 text-sm border-none rounded-lg bg-dark-secondary"
-                            placeholder="**********"
                             id="password"
+                            v-model="form.password"
+                        />
+                        <InputError
+                            v-show="!form.password"
+                            :message="form.errors.password"
                         />
                     </div>
 
@@ -298,8 +340,12 @@ const submit = () => {
                         <input
                             type="password"
                             class="w-full px-5 py-3 text-sm border-none rounded-lg bg-dark-secondary"
-                            placeholder="**********"
                             id="password_confirmation"
+                            v-model="form.password_confirmation"
+                        />
+                        <InputError
+                            v-show="!form.password_confirmation"
+                            :message="form.errors.password_confirmation"
                         />
                     </div>
 
@@ -309,11 +355,9 @@ const submit = () => {
                             type="checkbox"
                             class="p-2 text-sm border rounded-sm border-dark-border bg-dark-secondary"
                             placeholder="**********"
-                            id="password_confirmation"
+                            id="tnc"
                         />
-                        <label
-                            for="password_confirmation"
-                            class="text-xs font-medium"
+                        <label for="tnc" class="text-xs font-medium select-none"
                             >I agree with the
                             <span class="underline text-dark-brand"
                                 >Terms & Conditions</span

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Artist;
 
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rules;
 
 class ArtistProfileController extends Controller
 {
@@ -29,6 +31,13 @@ class ArtistProfileController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'artist_name' => 'required|string|max:255',
+            'genres' => 'required',
+            'members' => 'required',
+            // 'username' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
         dd($request->all());
     }
 
