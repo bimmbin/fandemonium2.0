@@ -35,7 +35,7 @@ class ArtistProfileController extends Controller
             'artist_name' => 'required|string|max:255',
             'genres' => 'required',
             'members' => 'required',
-            // 'username' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'username' => 'required|string|lowercase|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         dd($request->all());
