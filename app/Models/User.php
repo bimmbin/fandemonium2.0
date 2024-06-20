@@ -17,8 +17,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'username',
         'password',
     ];
 
@@ -43,5 +42,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the profile associated with the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 }
