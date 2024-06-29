@@ -1,6 +1,6 @@
 <script setup>
 import Checkbox from "@/Components/Checkbox.vue";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -30,14 +30,22 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
+    <AuthLayout>
         <Head title="Log in" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <div class="flex flex-col gap-2 mb-5">
+            <h1 class="text-xl font-semibold">Welcome to Fandemonium</h1>
+            <span class="text-xs text-dark-text-secondary"
+                >Connect with your favorite artists and join a vibrant community
+                of music lovers.</span
+            >
+        </div>
+
+        <form @submit.prevent="submit" class="flex flex-col gap-5">
             <div>
                 <InputLabel for="username" value="Username" />
 
@@ -54,47 +62,62 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.username" />
             </div>
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+            <div class="flex flex-col gap-3">
+                <div class="">
+                    <InputLabel for="password" value="Password" />
 
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="block w-full mt-1"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
+                    <TextInput
+                        id="password"
+                        type="password"
+                        class="block w-full mt-1"
+                        v-model="form.password"
+                        required
+                        autocomplete="current-password"
+                    />
 
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="text-sm text-gray-600 ms-2 dark:text-gray-400"
-                        >Remember me</span
+                    <InputError class="mt-2" :message="form.errors.password" />
+                </div>
+                <div class="flex justify-between w-full">
+                    <label class="flex items-center">
+                        <Checkbox
+                            name="remember"
+                            v-model:checked="form.remember"
+                        />
+                        <span
+                            class="text-xs text-gray-600 ms-2 dark:text-gray-400"
+                            >Remember me</span
+                        >
+                    </label>
+                    <Link
+                        v-if="canResetPassword"
+                        :href="route('password.request')"
+                        class="text-xs underline text-dark-text-secondary"
                     >
-                </label>
+                        Forgot your password?
+                    </Link>
+                </div>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                >
-                    Forgot your password?
-                </Link>
+            <div class="flex flex-col gap-3">
+                <div class="flex items-center">
+                    <PrimaryButton
+                        class="flex items-center justify-center w-full text-xs"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Log in
+                    </PrimaryButton>
+                </div>
 
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
+                <div class="flex items-center justify-between w-full">
+                    <span class="text-xs text-gray-600 dark:text-gray-400"
+                        >Dont have an account?</span
+                    >
+                    <Link :href="route('register')" class="text-sm">
+                        Create an account
+                    </Link>
+                </div>
             </div>
         </form>
-    </GuestLayout>
+    </AuthLayout>
 </template>
