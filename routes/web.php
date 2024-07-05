@@ -4,15 +4,9 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\Artist\ArtistProfileController;
+use App\Http\Controllers\LandingPageController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('profile.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -32,3 +26,14 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+// spatie permissions guide
+// Route::group(['middleware' => ['role:manager']], function () { ... });
+// Route::group(['middleware' => ['permission:publish articles']], function () { ... });
+// Route::group(['middleware' => ['role_or_permission:publish articles']], function () { ... });
+
+// // for a specific guard:
+// Route::group(['middleware' => ['role:manager,api']], function () { ... });
+
+// // multiple middleware
+// Route::group(['middleware' => ['role:manager','permission:publish articles']], function () { ... });
