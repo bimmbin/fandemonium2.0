@@ -1,5 +1,6 @@
 <script setup>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import PostCard from "@/Components/PostCard.vue";
 import { Head } from "@inertiajs/vue3";
 </script>
 
@@ -32,6 +33,7 @@ import { Head } from "@inertiajs/vue3";
             </div>
 
             <!-- Post Card Section -->
+            <PostCard />
         </div>
     </MainLayout>
 </template>
