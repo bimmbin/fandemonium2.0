@@ -26,9 +26,7 @@ class Profile extends Model
     protected $fillable = [
         'user_id',
         'profile_img_path',
-        'first_name',
-        'last_name',
-        'middle_name',
+        'name',
         'background',
         'type',
     ];

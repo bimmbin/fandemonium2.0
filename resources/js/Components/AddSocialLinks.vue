@@ -21,7 +21,7 @@ const submit = () => {
 
 <template>
     <div
-        class="absolute top-0 left-0 flex items-center justify-center w-full h-screen px-10 py-5 bg-black cursor-default max-md:px-5 bg-opacity-70"
+        class="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-screen px-10 py-5 bg-black cursor-default max-md:px-5 bg-opacity-70"
     >
         <div
             class="w-[400px] mx-auto max-md:w-screen max-md:px-5 py-5 max-sm:py-5 text-dark-text-primary max-xl:px-10 bg-dark-secondary rounded-xl px-5"

@@ -16,10 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
-            $table->string('profile_img_path')->default('default.jpg');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('middle_name')->nullable();
+            $table->string('profile_img_path')->default('/storage/default.jpg');
+            $table->string('name');
             $table->text('background')->nullable();
             $table->enum('type', ['fan', 'artist'])->default('fan');
             $table->timestamps();
