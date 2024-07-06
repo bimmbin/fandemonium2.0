@@ -20,9 +20,7 @@ class ProfileFactory extends Factory
         return [
             'user_id' => User::factory(),
             'profile_img_path' => 'default.jpg',
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
-            'middle_name' => $this->faker->lastName(),
+            'name' => $this->faker->name(),
             'background' => $this->faker->paragraph(),
             'type' => $this->faker->randomElement(['fan', 'artist']),
         ];

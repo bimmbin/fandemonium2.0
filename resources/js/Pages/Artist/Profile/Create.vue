@@ -54,8 +54,14 @@ const previewImage = (e) => {
     console.log(URL.createObjectURL(file[0]));
 };
 
+const resetImage = () => {
+    form.image = null;
+    url.value = null;
+};
+
 const form = useForm({
     artist_name: "",
+    image: "",
     genres: [],
     members: [],
     about: "",
@@ -107,12 +113,20 @@ const submit = () => {
     <MainLayout>
         <Wizard :stepCounts="3" @submit="submit()">
             <template #all>
-                <img
-                    v-if="url"
-                    :src="url"
-                    alt=""
-                    class="object-cover w-full border-2 border-dashed rounded-lg h-60 border-dark-brand"
-                />
+                <div v-if="url" class="relative">
+                    <img
+                        :src="url"
+                        alt=""
+                        class="object-cover w-full rounded-lg h-60"
+                    />
+                    <div
+                        class="absolute top-0 right-0 flex items-center gap-2 px-3 py-2 mt-5 mr-5 border cursor-pointer select-none opacity-80 border-dark-text-secondary rounded-xl bg-dark-secondary hover:bg-dark-tertiary"
+                        @click="resetImage()"
+                    >
+                        <img src="/assets/exit.svg" alt="" />
+                        <span>reset</span>
+                    </div>
+                </div>
                 <label
                     v-else
                     for="file"
@@ -132,7 +146,7 @@ const submit = () => {
                     type="file"
                     id="file"
                     class="w-full px-3 py-2 bg-input_bg rounded-t-md"
-                    @input="form.image = $event.target.files"
+                    @input="form.image = $event.target.files[0]"
                     @change="previewImage"
                     hidden
                     accept="image/*"

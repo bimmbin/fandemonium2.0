@@ -6,7 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\Artist\ArtistProfileController;
 use App\Http\Controllers\LandingPageController;
 
-Route::get('/', [LandingPageController::class, 'index'])->name('profile.index');
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
