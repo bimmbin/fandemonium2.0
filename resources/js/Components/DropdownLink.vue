@@ -1,10 +1,18 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link } from "@inertiajs/vue3";
 
 defineProps({
     href: {
         type: String,
         required: true,
+    },
+    img: {
+        type: String,
+        required: true,
+    },
+    red: {
+        type: Boolean,
+        default: false,
     },
 });
 </script>
@@ -12,8 +20,10 @@ defineProps({
 <template>
     <Link
         :href="href"
-        class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out"
+        class="flex items-center w-full gap-2 px-5 py-3 text-sm leading-5 transition duration-150 ease-in-out text-start hover:bg-dark-tertiary focus:outline-none focus:bg-dark-tertiary text-dark-text-primary"
+        :class="{ 'text-red-500': red }"
     >
+        <img :src="'assets/' + img" alt="" />
         <slot />
     </Link>
 </template>

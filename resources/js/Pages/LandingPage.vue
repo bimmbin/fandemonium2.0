@@ -28,7 +28,7 @@ import { Head } from "@inertiajs/vue3";
                     <div class="underline text-dark-brand">Change</div>
                 </div>
                 <div
-                    class="w-full border bg-dark-tertiary rounded-xl h-60 border-dark-border"
+                    class="w-full h-40 border bg-dark-tertiary rounded-xl border-dark-border"
                 ></div>
             </div>
 
