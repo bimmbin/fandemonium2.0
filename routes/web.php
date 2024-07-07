@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Artist\ArtistProfileAboutController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -7,6 +8,8 @@ use App\Http\Controllers\Artist\ArtistProfileController;
 use App\Http\Controllers\LandingPageController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
+
+Route::get('/artist/{username}/about', [ArtistProfileAboutController::class, 'index'])->name('artist.profile.about.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
