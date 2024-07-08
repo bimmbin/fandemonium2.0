@@ -13,12 +13,12 @@ const props = defineProps({
 });
 
 const classes = computed(() =>
-    props.active ? "border-b-2 border-dark-brand px-3 text-sm" : ""
+    props.active ? "border-b-2 border-dark-brand" : ""
 );
 </script>
 
 <template>
-    <Link :href="href" :class="classes" class="py-2">
+    <Link :href="href" :class="classes" class="px-3 py-2 text-sm">
         <slot />
     </Link>
 </template>

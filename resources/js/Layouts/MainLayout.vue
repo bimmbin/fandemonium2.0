@@ -44,7 +44,15 @@ const showingNavigationDropdown = ref(false);
                 </template>
 
                 <template #content>
-                    <DropdownLink :href="route('profile.edit')" img="user.svg">
+                    <DropdownLink
+                        :href="
+                            route(
+                                'artist.posts.index',
+                                $page.props.auth.user.username
+                            )
+                        "
+                        img="user.svg"
+                    >
                         Profile
                     </DropdownLink>
                     <DropdownLink

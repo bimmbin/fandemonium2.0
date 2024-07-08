@@ -41,19 +41,41 @@ import ProfileNavLink from "@/Components/ProfileNavLink.vue";
             </div>
         </div>
     </div>
-    <div class="py-2 mt-3 border-b border-dark-border">
+    <div class="flex gap-2 mt-3 border-b border-dark-border">
         <ProfileNavLink
-            :href="
-                route('artist.profile.about.index', $page.props.user.username)
+            :href="route('artist.posts.index', $page.props.user.username)"
+            :active="
+                route().current('artist.posts.index', $page.props.user.username)
             "
+        >
+            Posts
+        </ProfileNavLink>
+        <ProfileNavLink
+            :href="route('artist.events.index', $page.props.user.username)"
             :active="
                 route().current(
-                    'artist.profile.about.index',
+                    'artist.events.index',
                     $page.props.user.username
                 )
             "
         >
+            Events
+        </ProfileNavLink>
+        <ProfileNavLink
+            :href="route('artist.about.index', $page.props.user.username)"
+            :active="
+                route().current('artist.about.index', $page.props.user.username)
+            "
+        >
             About
+        </ProfileNavLink>
+        <ProfileNavLink
+            :href="route('artist.fans.index', $page.props.user.username)"
+            :active="
+                route().current('artist.fans.index', $page.props.user.username)
+            "
+        >
+            Fans
         </ProfileNavLink>
     </div>
 
