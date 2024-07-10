@@ -14,7 +14,10 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.inde
 
 Route::get('/artist/{username}/about', [AboutController::class, 'index'])->name('artist.about.index');
 Route::get('/artist/{username}/posts', [PostsController::class, 'index'])->name('artist.posts.index');
+// Events
 Route::get('/artist/{username}/events', [EventsController::class, 'index'])->name('artist.events.index');
+Route::post('/artist/events/store', [EventsController::class, 'store'])->name('artist.events.store');
+
 Route::get('/artist/{username}/fans', [FansController::class, 'index'])->name('artist.fans.index');
 
 Route::get('/dashboard', function () {

@@ -38,7 +38,7 @@ const showingNavigationDropdown = ref(false);
                     <div
                         class="flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer select-none bg-dark-secondary"
                     >
-                        <div class="w-6 h-6 bg-gray-500 rounded-full"></div>
+                        <img class="w-6 h-6 bg-gray-500 rounded-full" />
                         <img src="/assets/down.svg" class="h-2" />
                     </div>
                 </template>
