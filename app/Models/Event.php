@@ -20,4 +20,9 @@ class Event extends Model
         'end_time',
         'ticket_link',
     ];
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class, 'artist_profile_id');
+    }
 }

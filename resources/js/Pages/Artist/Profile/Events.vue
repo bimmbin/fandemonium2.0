@@ -14,8 +14,9 @@ import { nextTick, ref } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
 import Modal from "@/Components/Modal.vue";
 
-const { user } = defineProps({
+const { user, events } = defineProps({
     user: Object,
+    events: Object,
 });
 
 const confirmAddEvent = ref(false);
@@ -39,7 +40,9 @@ const closeModal = () => {
             </div>
         </div>
         <!-- Content -->
-        <EventCard />
+        <div class="flex flex-col gap-2">
+            <EventCard v-for="event in events" :event="event" />
+        </div>
     </div>
 
     <!-- Modals -->

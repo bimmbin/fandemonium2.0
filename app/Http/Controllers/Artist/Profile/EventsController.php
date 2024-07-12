@@ -15,8 +15,15 @@ class EventsController extends Controller
     {
         $user = User::with('profile')->where('username', $username)->first();
 
+        $events = Event::whereHas('profile', function ($query) use ($username) {
+            $query->whereHas('user', function ($query) use ($username) {
+                $query->where('username', $username);
+            });
+        })->get();
+
         return Inertia::render('Artist/Profile/Events', [
             'user' => $user,
+            'events' => $events,
         ]);
     }
 
