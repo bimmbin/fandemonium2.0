@@ -15,6 +15,8 @@ class EventsController extends Controller
     {
         $user = User::with('profile')->where('username', $username)->first();
 
+        $is_owner = auth()->user()->username === $username;
+
         $events = Event::whereHas('profile', function ($query) use ($username) {
             $query->whereHas('user', function ($query) use ($username) {
                 $query->where('username', $username);
@@ -23,6 +25,7 @@ class EventsController extends Controller
 
         return Inertia::render('Artist/Profile/Events', [
             'user' => $user,
+            'is_owner' => $is_owner,
             'events' => $events,
         ]);
     }

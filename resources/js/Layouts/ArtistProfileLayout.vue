@@ -27,6 +27,7 @@ import ProfileNavLink from "@/Components/ProfileNavLink.vue";
 
             <!-- Follow (for fans) -->
             <div
+                v-if="!$page.props.is_owner"
                 class="flex gap-2 px-4 py-2 text-sm rounded-full cursor-pointer bg-dark-accent itemcenter"
             >
                 <img src="/assets/add.svg" alt="" />
@@ -35,6 +36,7 @@ import ProfileNavLink from "@/Components/ProfileNavLink.vue";
 
             <!-- Edit (for artist profile owner) -->
             <div
+                v-if="$page.props.is_owner"
                 class="flex gap-2 px-4 py-2 text-sm border rounded-full cursor-pointer border-dark-text-primary itemcenter"
             >
                 <span>Edit</span>
@@ -70,6 +72,7 @@ import ProfileNavLink from "@/Components/ProfileNavLink.vue";
             About
         </ProfileNavLink>
         <ProfileNavLink
+            v-if="$page.props.is_owner"
             :href="route('artist.fans.index', $page.props.user.username)"
             :active="
                 route().current('artist.fans.index', $page.props.user.username)

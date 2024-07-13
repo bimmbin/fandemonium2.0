@@ -10,13 +10,14 @@ export default {
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
-const { user } = defineProps({
+const { user, is_owner } = defineProps({
     user: Object,
+    is_owner: Boolean,
 });
 </script>
 
 <template>
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-3">
         <div class="flex flex-col gap-2">
             <h2 class="text-lg font-semibold">
                 About <span class="capitalize"> {{ user.profile.name }}</span>
