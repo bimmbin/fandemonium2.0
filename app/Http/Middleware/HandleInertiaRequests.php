@@ -30,7 +30,11 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         if ($request->user()) {
-            $profile_img_path = $request->user()->profile->profile_img_path;
+            if ($request->user()->profile->profile_img_path !== null) {
+                $profile_img_path = $request->user()->profile->profile_img_path;
+            } else {
+                $profile_img_path = null;
+            }
         } else {
             $profile_img_path = null;
         }

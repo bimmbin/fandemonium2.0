@@ -1,10 +1,36 @@
 <script setup>
+import { ref } from "vue";
+import { Head } from "@inertiajs/vue3";
+
 import MainLayout from "@/Layouts/MainLayout.vue";
 import PostCard from "@/Components/PostCard.vue";
-import { Head } from "@inertiajs/vue3";
+import FinishProfile from "@/Components/Fan/Forms/FinishProfile.vue";
+import Modal from "@/Components/Modal.vue";
+
+defineProps({
+    no_profile: {
+        type: Boolean,
+        default: false,
+    },
+});
+
+const finishProfile = ref(true);
+
+const closeModal = () => {
+    finishProfile.value = false;
+};
 </script>
 
 <template>
+    <!-- Modals -->
+    <Modal
+        :show="no_profile && finishProfile"
+        modalTitle="Add Event"
+        :closable="false"
+    >
+        <FinishProfile @close="closeModal" />
+    </Modal>
+
     <MainLayout>
         <div class="flex flex-col gap-5">
             <!-- Search Input -->

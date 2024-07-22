@@ -106,6 +106,7 @@ const maxWidthClass = computed(() => {
                         <div class="flex items-center justify-between mb-5">
                             <h2 class="text-xl">{{ modalTitle }}</h2>
                             <img
+                                v-show="!closeable"
                                 src="/assets/exit.svg"
                                 @click="close"
                                 class="h-4 cursor-pointer select-none"
