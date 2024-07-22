@@ -5,7 +5,6 @@ import "typeface-poppins";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
-import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
 
@@ -19,6 +18,7 @@ const showingNavigationDropdown = ref(false);
         <div class="flex items-center justify-between py-5">
             <img src="/assets/logo.png" class="h-12" />
 
+            <!-- Guest -->
             <Dropdown v-if="!$page.props.auth.user" align="right" width="48">
                 <template #trigger>
                     <img
@@ -34,18 +34,30 @@ const showingNavigationDropdown = ref(false);
                 </template>
             </Dropdown>
 
+            <!-- Authenticated -->
             <Dropdown v-if="$page.props.auth.user" align="right" width="48">
                 <template #trigger>
                     <div
                         class="flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer select-none bg-dark-secondary"
                     >
-                        <div class="w-6 h-6 bg-gray-500 rounded-full"></div>
+                        <img
+                            class="w-6 h-6 bg-gray-500 rounded-full"
+                            :src="$page.props.auth.profile_img_path"
+                        />
                         <img src="/assets/down.svg" class="h-2" />
                     </div>
                 </template>
 
                 <template #content>
-                    <DropdownLink :href="route('profile.edit')" img="user.svg">
+                    <DropdownLink
+                        :href="
+                            route(
+                                'artist.posts.index',
+                                $page.props.auth.user.username
+                            )
+                        "
+                        img="user.svg"
+                    >
                         Profile
                     </DropdownLink>
                     <DropdownLink

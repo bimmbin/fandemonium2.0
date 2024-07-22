@@ -4,9 +4,21 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\Artist\ArtistProfileController;
+use App\Http\Controllers\Artist\Profile\AboutController;
+use App\Http\Controllers\Artist\Profile\EventsController;
+use App\Http\Controllers\Artist\Profile\FansController;
+use App\Http\Controllers\Artist\Profile\PostsController;
 use App\Http\Controllers\LandingPageController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
+
+Route::get('/artist/{username}/about', [AboutController::class, 'index'])->name('artist.about.index');
+Route::get('/artist/{username}/posts', [PostsController::class, 'index'])->name('artist.posts.index');
+// Events
+Route::get('/artist/{username}/events', [EventsController::class, 'index'])->name('artist.events.index');
+Route::post('/artist/events/store', [EventsController::class, 'store'])->name('artist.events.store');
+
+Route::get('/artist/{username}/fans', [FansController::class, 'index'])->name('artist.fans.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

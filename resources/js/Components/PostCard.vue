@@ -20,7 +20,7 @@ defineProps({
                     >
                 </div>
             </div>
-            <img src="assets/settings.svg" class="h-6 opacity-60" />
+            <img src="/assets/settings.svg" class="h-5 opacity-60" />
         </div>
         <!-- Content -->
         <!-- <pre></pre> -->
