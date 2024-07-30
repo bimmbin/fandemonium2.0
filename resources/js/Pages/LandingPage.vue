@@ -25,7 +25,7 @@ const closeModal = () => {
     <!-- Modals -->
     <Modal
         :show="no_profile && finishProfile"
-        modalTitle="Add Event"
+        modalTitle="Finish Profile"
         :closable="false"
     >
         <FinishProfile @close="closeModal" />

@@ -3,15 +3,19 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Artist\Profile\FansController;
 use App\Http\Controllers\Artist\ArtistProfileController;
 use App\Http\Controllers\Artist\Profile\AboutController;
-use App\Http\Controllers\Artist\Profile\EventsController;
-use App\Http\Controllers\Artist\Profile\FansController;
 use App\Http\Controllers\Artist\Profile\PostsController;
-use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Artist\Profile\EventsController;
+use App\Http\Controllers\Fan\Profile\FinishProfileController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 
+/**
+ * Artist
+ */
 Route::get('/artist/{username}/about', [AboutController::class, 'index'])->name('artist.about.index');
 Route::get('/artist/{username}/posts', [PostsController::class, 'index'])->name('artist.posts.index');
 // Events
@@ -31,11 +35,18 @@ Route::group(['middleware' => ['auth', 'role:artist']], function () {
     // Artist routes
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+/**
+ * Fan
+ */
+Route::post('/fan/profile/finish/store', [FinishProfileController::class, 'store'])->name('fan.finish.profile.store');
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__ . '/auth.php';
 

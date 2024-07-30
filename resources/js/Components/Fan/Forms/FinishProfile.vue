@@ -9,13 +9,27 @@ import TextInput from "@/Components/TextInput.vue";
 
 const emit = defineEmits(["close"]);
 
+// upload picture
+const url = ref();
+
+const previewImage = (e) => {
+    const file = e.target.files;
+    url.value = URL.createObjectURL(file[0]);
+    console.log(URL.createObjectURL(file[0]));
+};
+
+const resetImage = () => {
+    form.image = null;
+    url.value = null;
+};
+
 const form = useForm({
     name: "",
     image: "",
 });
 
 const submit = () => {
-    form.post(route("artist.events.store"), {
+    form.post(route("fan.finish.profile.store"), {
         onSuccess: () => emit("close"),
     });
 };
