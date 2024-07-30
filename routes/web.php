@@ -9,6 +9,7 @@ use App\Http\Controllers\Artist\ArtistProfileController;
 use App\Http\Controllers\Artist\Profile\AboutController;
 use App\Http\Controllers\Artist\Profile\PostsController;
 use App\Http\Controllers\Artist\Profile\EventsController;
+use App\Http\Controllers\Fan\Profile\FanProfileController;
 use App\Http\Controllers\Fan\Profile\FinishProfileController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth', 'role:artist']], function () {
  * Fan
  */
 Route::post('/fan/profile/finish/store', [FinishProfileController::class, 'store'])->name('fan.finish.profile.store');
+Route::get('/fan/{username}', [FanProfileController::class, 'index'])->name('fan.profile.index');
 
 
 // Route::middleware('auth')->group(function () {
