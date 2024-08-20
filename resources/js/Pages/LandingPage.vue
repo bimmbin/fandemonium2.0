@@ -15,6 +15,7 @@ defineProps({
 });
 
 const finishProfile = ref(true);
+const showSearchSection = ref(false);
 
 const closeModal = () => {
     finishProfile.value = false;
@@ -40,26 +41,240 @@ const closeModal = () => {
                 placeholder="Search artist"
             />
 
-            <!-- Map Section -->
-            <div class="flex flex-col gap-3">
-                <h2 class="text-lg font-semibold">Find Artist Events</h2>
-                <div class="flex items-center justify-between text-sm">
-                    <div class="flex items-center gap-2">
-                        <img src="/assets/arrow_down.svg" class="w-4 h-4" />
-                        <img src="/assets/location_mark.svg" class="w-5 h-5" />
-                        <span class="text-dark-text-secondary"
-                            >Tarlac, Philippines</span
-                        >
+            <!-- Main Section -->
+            <div v-if="false" class="flex flex-col gap-5">
+                <!-- Find Artist Map Section -->
+                <div class="flex flex-col gap-3">
+                    <h2 class="text-lg font-semibold">Find Artist Events</h2>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center gap-2">
+                            <img src="/assets/arrow_down.svg" class="w-4 h-4" />
+                            <img
+                                src="/assets/location_mark.svg"
+                                class="w-5 h-5"
+                            />
+                            <span class="text-dark-text-secondary"
+                                >Tarlac, Philippines</span
+                            >
+                        </div>
+                        <div class="underline text-dark-brand">Change</div>
                     </div>
-                    <div class="underline text-dark-brand">Change</div>
+                    <div
+                        class="w-full h-40 border bg-dark-tertiary rounded-xl border-dark-border"
+                    ></div>
                 </div>
-                <div
-                    class="w-full h-40 border bg-dark-tertiary rounded-xl border-dark-border"
-                ></div>
+
+                <!-- Post Card Section -->
+                <PostCard />
             </div>
 
-            <!-- Post Card Section -->
-            <PostCard />
+            <!-- Search Section -->
+            <div v-if="true" class="flex flex-col gap-5">
+                <!-- Results -->
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-sm text-dark-text-secondary">
+                            Results
+                        </h2>
+                        <img src="/assets/exit.svg" alt="" class="opacity-50" />
+                    </div>
+                    <div class="flex flex-col select-none">
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending -->
+                <div class="flex flex-col gap-3">
+                    <h2 class="text-lg font-semibold">Trending Now</h2>
+                    <div
+                        class="flex gap-3 overflow-x-auto select-none whitespace-nowrap"
+                    >
+                        <div
+                            class="flex flex-col items-center gap-2 p-5 rounded-xl bg-dark-secondary"
+                        >
+                            <div
+                                class="w-20 h-20 bg-gray-500 rounded-full"
+                            ></div>
+                            <h2 class="text-sm font-medium">The Beatles</h2>
+                            <span class="text-xs text-dark-text-secondary"
+                                >125 fans</span
+                            >
+                        </div>
+                        <div
+                            class="flex flex-col items-center gap-2 p-5 rounded-xl bg-dark-secondary"
+                        >
+                            <div
+                                class="w-20 h-20 bg-gray-500 rounded-full"
+                            ></div>
+                            <h2 class="text-sm font-medium">The Beatles</h2>
+                            <span class="text-xs text-dark-text-secondary"
+                                >125 fans</span
+                            >
+                        </div>
+                        <div
+                            class="flex flex-col items-center gap-2 p-5 rounded-xl bg-dark-secondary"
+                        >
+                            <div
+                                class="w-20 h-20 bg-gray-500 rounded-full"
+                            ></div>
+                            <h2 class="text-sm font-medium">The Beatles</h2>
+                            <span class="text-xs text-dark-text-secondary"
+                                >125 fans</span
+                            >
+                        </div>
+                        <div
+                            class="flex flex-col items-center gap-2 p-5 rounded-xl bg-dark-secondary"
+                        >
+                            <div
+                                class="w-20 h-20 bg-gray-500 rounded-full"
+                            ></div>
+                            <h2 class="text-sm font-medium">The Beatles</h2>
+                            <span class="text-xs text-dark-text-secondary"
+                                >125 fans</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestions -->
+                <div class="flex flex-col gap-3">
+                    <h2 class="text-sm text-dark-text-secondary">
+                        Suggestions
+                    </h2>
+
+                    <div class="flex flex-col select-none">
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gray-500 rounded-full"
+                            ></div>
+                            <div class="flex flex-col">
+                                <h1 class="text-sm">John Doe</h1>
+                                <span class="text-xs text-dark-text-secondary"
+                                    >since Jan 25, 2023</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </MainLayout>
 </template>
