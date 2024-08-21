@@ -24,7 +24,11 @@ const showingNavigationDropdown = ref(false);
 
             <div class="flex gap-4 items-center">
                 <!-- Notification -->
-                <Notification v-if="true" align="right" width="48">
+                <Notification
+                    v-if="$page.props.auth.user"
+                    align="right"
+                    width="48"
+                >
                     <template #trigger>
                         <img src="/assets/notification.svg" alt="" />
                     </template>
