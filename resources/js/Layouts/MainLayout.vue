@@ -18,8 +18,9 @@ const showingNavigationDropdown = ref(false);
         class="w-full min-h-screen px-5 bg-dark-primary text-dark-text-primary font-pop"
     >
         <div class="flex items-center justify-between py-5">
-            <img src="/assets/logo.png" class="h-12" />
-
+            <Link :href="route('landingpage.index')">
+                <img src="/assets/logo.png" class="h-12 cursor-pointer" />
+            </Link>
             <!-- Guest -->
             <Dropdown v-if="!$page.props.auth.user" align="right" width="48">
                 <template #trigger>
