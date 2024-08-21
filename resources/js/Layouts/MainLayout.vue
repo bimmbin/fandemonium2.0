@@ -138,14 +138,6 @@ const showingNavigationDropdown = ref(false);
                     </template>
 
                     <template #content>
-                        <DropdownLink
-                            img="notification.svg"
-                            method="post"
-                            as="button"
-                        >
-                            Notification
-                        </DropdownLink>
-
                         <ArtistNav v-if="$page.props.auth.role == 'artist'" />
                         <FanNav v-if="$page.props.auth.role == 'fan'" />
 
