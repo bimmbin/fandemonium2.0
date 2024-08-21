@@ -16,6 +16,7 @@ defineProps({
 
 const finishProfile = ref(true);
 const showSearchSection = ref(false);
+const search = ref();
 
 const closeModal = () => {
     finishProfile.value = false;
@@ -35,14 +36,34 @@ const closeModal = () => {
     <MainLayout>
         <div class="flex flex-col gap-5">
             <!-- Search Input -->
-            <input
-                type="text"
-                class="w-full px-5 py-3 text-sm border rounded-full border-dark-border bg-dark-secondary"
-                placeholder="Search artist"
-            />
+            <div class="flex items-stretch h-11 gap-1">
+                <div
+                    v-if="showSearchSection"
+                    class="w-12 h-full border border-dark-border bg-dark-secondary flex items-center justify-center rounded-l-full active:bg-dark-tertiary select-none cursor-pointer hover:bg-dark-tertiary"
+                    @click="showSearchSection = false"
+                >
+                    <img
+                        src="/assets/exit.svg"
+                        alt=""
+                        class="translate-x-[2.5px]"
+                    />
+                </div>
+                <input
+                    type="text"
+                    class="w-full h-full py-3 text-sm border border-dark-border bg-dark-secondary"
+                    :class="
+                        showSearchSection
+                            ? '!rounded-r-full px-3'
+                            : 'rounded-full px-5'
+                    "
+                    v-model="search"
+                    placeholder="Search artist"
+                    @focus="showSearchSection = true"
+                />
+            </div>
 
             <!-- Main Section -->
-            <div v-if="false" class="flex flex-col gap-5">
+            <div v-if="!showSearchSection" class="flex flex-col gap-5">
                 <!-- Find Artist Map Section -->
                 <div class="flex flex-col gap-3">
                     <h2 class="text-lg font-semibold">Find Artist Events</h2>
@@ -69,15 +90,11 @@ const closeModal = () => {
             </div>
 
             <!-- Search Section -->
-            <div v-if="true" class="flex flex-col gap-5">
+            <div v-if="showSearchSection" class="flex flex-col gap-5">
                 <!-- Results -->
-                <div class="flex flex-col gap-3">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-sm text-dark-text-secondary">
-                            Results
-                        </h2>
-                        <img src="/assets/exit.svg" alt="" class="opacity-50" />
-                    </div>
+                <div v-if="search" class="flex flex-col gap-3">
+                    <h2 class="text-sm text-dark-text-secondary">Results</h2>
+
                     <div class="flex flex-col select-none">
                         <div
                             class="flex items-center gap-2 px-5 py-3 cursor-pointer hover:bg-dark-secondary active:bg-dark-tertiary"
@@ -201,7 +218,7 @@ const closeModal = () => {
                 </div>
 
                 <!-- Suggestions -->
-                <div class="flex flex-col gap-3">
+                <div v-if="!search" class="flex flex-col gap-3">
                     <h2 class="text-sm text-dark-text-secondary">
                         Suggestions
                     </h2>
