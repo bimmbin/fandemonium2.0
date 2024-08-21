@@ -32,17 +32,21 @@ class HandleInertiaRequests extends Middleware
         if ($request->user()) {
             if ($request->user()->profile->profile_img_path !== null) {
                 $profile_img_path = $request->user()->profile->profile_img_path;
+                $role = $request->user()->getRoleNames()->first();
             } else {
                 $profile_img_path = null;
+                $role = null;
             }
         } else {
             $profile_img_path = null;
+            $role = null;
         }
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
                 'profile_img_path' => $profile_img_path,
+                'role' => $role,
             ],
         ];
     }

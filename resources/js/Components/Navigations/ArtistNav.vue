@@ -1,3 +1,12 @@
-<script setup></script>
+<script setup>
+import DropdownLink from "@/Components/DropdownLink.vue";
+</script>
 
-<template></template>
+<template>
+    <DropdownLink
+        :href="route('artist.posts.index', $page.props.auth.user.username)"
+        img="user.svg"
+    >
+        Profile
+    </DropdownLink>
+</template>

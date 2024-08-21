@@ -12,6 +12,9 @@ export default {
 
     theme: {
         extend: {
+            padding: {
+                "1px": "1px",
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 mont: "'Montserrat', sans-serif",

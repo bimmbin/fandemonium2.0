@@ -6,6 +6,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Helpers\ArtistHelpers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,8 @@ class EventsController extends Controller
 {
     public function index($username)
     {
+        ArtistHelpers::redirectIfUserNotArtist($username);
+
         $user = User::with('profile')->where('username', $username)->first();
 
         $is_owner = auth()->user()->username === $username;
