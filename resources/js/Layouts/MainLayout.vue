@@ -7,6 +7,8 @@ import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
+import ArtistNav from "@/Components/Navigations/ArtistNav.vue";
+import FanNav from "@/Components/Navigations/FanNav.vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -50,16 +52,15 @@ const showingNavigationDropdown = ref(false);
 
                 <template #content>
                     <DropdownLink
-                        :href="
-                            route(
-                                'artist.posts.index',
-                                $page.props.auth.user.username
-                            )
-                        "
-                        img="user.svg"
+                        img="notification.svg"
+                        method="post"
+                        as="button"
                     >
-                        Profile
+                        Notification
                     </DropdownLink>
+                    <ArtistNav v-if="$page.props.auth.role == 'artist'" />
+                    <FanNav v-if="$page.props.auth.role == 'fan'" />
+
                     <DropdownLink
                         :href="route('logout')"
                         img="back.svg"
