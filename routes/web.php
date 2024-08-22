@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Artist\Profile\FansController;
 use App\Http\Controllers\Artist\ArtistProfileController;
 use App\Http\Controllers\Artist\Profile\AboutController;
@@ -11,8 +12,19 @@ use App\Http\Controllers\Artist\Profile\PostsController;
 use App\Http\Controllers\Artist\Profile\EventsController;
 use App\Http\Controllers\Fan\Profile\FanProfileController;
 use App\Http\Controllers\Fan\Profile\FinishProfileController;
+use App\Http\Controllers\Settings\ChangePasswordController;
+use App\Http\Controllers\Settings\SavedLocationsController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
+
+// auth routes
+Route::group(['middleware' => 'auth'], function () {
+    // Artist routes
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::get('/settings/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
+    Route::get('/settings/saved-locations', [SavedLocationsController::class, 'index'])->name('saved-locations.index');
+});
+
 
 /**
  * Artist

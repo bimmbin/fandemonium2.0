@@ -14,4 +14,4 @@ const { user, is_owner } = defineProps({
 });
 </script>
 
-<template></template>
+<template>Settings</template>
