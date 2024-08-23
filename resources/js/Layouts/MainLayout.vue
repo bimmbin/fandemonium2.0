@@ -24,7 +24,11 @@ const showingNavigationDropdown = ref(false);
 
             <div class="flex gap-4 items-center">
                 <!-- Notification -->
-                <Notification v-if="true" align="right" width="48">
+                <Notification
+                    v-if="$page.props.auth.user"
+                    align="right"
+                    width="48"
+                >
                     <template #trigger>
                         <img src="/assets/notification.svg" alt="" />
                     </template>
@@ -140,7 +144,12 @@ const showingNavigationDropdown = ref(false);
                     <template #content>
                         <ArtistNav v-if="$page.props.auth.role == 'artist'" />
                         <FanNav v-if="$page.props.auth.role == 'fan'" />
-
+                        <DropdownLink
+                            :href="route('settings.index')"
+                            img="settings.svg"
+                        >
+                            Settings
+                        </DropdownLink>
                         <DropdownLink
                             :href="route('logout')"
                             img="back.svg"
