@@ -144,7 +144,12 @@ const showingNavigationDropdown = ref(false);
                     <template #content>
                         <ArtistNav v-if="$page.props.auth.role == 'artist'" />
                         <FanNav v-if="$page.props.auth.role == 'fan'" />
-
+                        <DropdownLink
+                            :href="route('settings.index')"
+                            img="settings.svg"
+                        >
+                            Settings
+                        </DropdownLink>
                         <DropdownLink
                             :href="route('logout')"
                             img="back.svg"
